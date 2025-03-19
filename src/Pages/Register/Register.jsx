@@ -1,8 +1,13 @@
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
 import registerLottieData from '../../assets/lottie/register-lottie.json';
+import { useContext } from "react";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 export default function Register() {
+
+    const { createUser } = useContext(AuthContext);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -17,7 +22,15 @@ export default function Register() {
             alert("Password must be at least 6 characters long, contain at least one uppercase letter, and one number.");
             return;
         }
+        createUser(email, password)
+            .then(res => {
+                console.log(res.user);
 
+            })
+            .catch(error => {
+                console.log(error.message);
+
+            })
         const formData = { name, email, password };
         console.log("Form submitted:", formData);
     };
@@ -60,7 +73,7 @@ export default function Register() {
                     Already have an account? <Link to="/signin" className="text-blue-400 hover:underline">Sign in</Link>
                 </p>
             </div>
-            <div className="w-96">  
+            <div className="w-96">
                 <Lottie animationData={registerLottieData} />
             </div>
         </div>
