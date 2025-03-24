@@ -1,12 +1,22 @@
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
-import registerLottieData from '../../assets/lottie/register-lottie.json';
 import { useContext } from "react";
+import registerLottieData from '../../assets/lottie/register-lottie.json';
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import { FaGoogle } from "react-icons/fa6";
 
 export default function Register() {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                console.log("Google Sign-In Successful:", result.user);
+            })
+            .catch((error) => {
+                console.error("Google Sign-In Error:", error);
+            });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,12 +35,10 @@ export default function Register() {
         createUser(email, password)
             .then(res => {
                 console.log(res.user);
-
             })
             .catch(error => {
                 console.log(error.message);
-
-            })
+            });
         const formData = { name, email, password };
         console.log("Form submitted:", formData);
     };
@@ -54,6 +62,9 @@ export default function Register() {
                     </div>
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Register</button>
                 </form>
+                <button onClick={handleGoogleSignIn} className="w-full mt-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition flex items-center justify-center gap-2">
+                    <FaGoogle /> Sign up with Google
+                </button>
                 <p className="mt-4 text-center text-gray-300">
                     Already have an account? <Link to="/signin" className="text-blue-400 hover:underline">Sign in</Link>
                 </p>
@@ -64,3 +75,38 @@ export default function Register() {
         </div>
     );
 }
+
+
+
+
+// Google SignUp
+// import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+// const auth = getAuth();
+// const provider = new GoogleAuthProvider();
+
+// const handleGoogleSignUp = () => {
+//     signInWithPopup(auth, provider)
+//         .then((result) => {
+//             console.log("Google Sign-Up Successful:", result.user);
+//         })
+//         .catch((error) => {
+//             console.error("Google Sign-Up Error:", error);
+//         });
+// };
+
+// Google SignIn
+// import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+// const auth = getAuth();
+// const provider = new GoogleAuthProvider();
+
+// const handleGoogleSignIn = () => {
+//     signInWithPopup(auth, provider)
+//         .then((result) => {
+//             console.log("Google Sign-In Successful:", result.user);
+//         })
+//         .catch((error) => {
+//             console.error("Google Sign-In Error:", error);
+//         });
+// };

@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
-import loginLottieJson from '../../assets/lottie/login-lottie.json'
+import loginLottieJson from '../../assets/lottie/login-lottie.json';
 import Lottie from "lottie-react";
 import { useContext } from "react";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import { FaGoogle } from "react-icons/fa6";
 
 export default function SignIn() {
 
     const { signInUser } = useContext(AuthContext);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                console.log("Google Sign-In Successful:", result.user);
+            })
+            .catch((error) => {
+                console.error("Google Sign-In Error:", error);
+            });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +34,7 @@ export default function SignIn() {
             })
             .catch(e => {
                 console.log('Error', e);
-            })
+            });
         const formData = { email, password };
         console.log("Form submitted:", formData);
     };
@@ -40,12 +54,15 @@ export default function SignIn() {
                     </div>
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Sign In</button>
                 </form>
+                <button onClick={handleGoogleSignIn} className="w-full mt-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition flex items-center justify-center gap-2">
+                    <FaGoogle /> Sign In with Google
+                </button>
                 <p className="mt-4 text-center text-gray-300">
                     Don't have an account? <Link to="/register" className="text-blue-400 hover:underline">Register</Link>
                 </p>
             </div>
             <div className="w-80 ml-10">
-                <Lottie animationData={loginLottieJson} />
+                <Lottie animationData={loginLottieJson} className="filter invert brightness-75" />
             </div>
         </div>
     );
