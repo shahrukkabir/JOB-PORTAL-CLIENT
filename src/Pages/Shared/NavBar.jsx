@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../Context/AuthContext/AuthContext';
+import logo from '../../assets/logo.png'
 
 const NavBar = () => {
 
@@ -26,47 +27,34 @@ const NavBar = () => {
                     <ul tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">JOB-PORTAL</a>
+                <Link to="/">
+                    <a className="btn btn-ghost py-7 my-4 text-xl">
+                        <img src={logo} alt="" />
+                        <h3 className="3xl">JOB-PORTAL</h3>
+                    </a>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><a>Item 1</a></li>
-                    <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
+                    <li><a>Item 2</a></li>
                     <li><a>Item 3</a></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                {loading ? (
-                    <span>Loading...</span> // Show while Firebase is checking auth state
-                ) : user ? (
+                {loading ? (<span>Loading...</span>) : user ?
                     <>
-                        <span className="mr-3">{user.email}</span> {/* Show user email */}
+                        <span className="mr-3">{user.email}</span>
                         <button onClick={handleSignOut} className="btn">Sign Out</button>
-                    </>
-                ) : (
+                    </> :
                     <>
                         <Link className="hover:underline" to="/register">Register</Link>
                         <Link className="pl-5 hover:underline" to="/signin">Sign In</Link>
                     </>
-                )}
+                }
             </div>
         </div>
     );
