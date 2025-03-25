@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginLottieJson from '../../assets/lottie/login-lottie.json';
 import Lottie from "lottie-react";
 import { useContext } from "react";
@@ -9,6 +9,12 @@ import { FaGoogle } from "react-icons/fa6";
 export default function SignIn() {
 
     const { signInUser } = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state || '/';
+    
+
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
 
@@ -16,6 +22,7 @@ export default function SignIn() {
         signInWithPopup(auth, provider)
             .then((result) => {
                 console.log("Google Sign-In Successful:", result.user);
+                navigate(from);
             })
             .catch((error) => {
                 console.error("Google Sign-In Error:", error);
