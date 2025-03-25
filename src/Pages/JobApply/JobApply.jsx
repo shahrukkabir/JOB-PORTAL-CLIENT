@@ -1,22 +1,42 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import useAuth from './../../useAuth/useAuth';
 
 const JobApply = () => {
     const { id } = useParams();
-    console.log("Job ID:", id);
+    const { user } = useAuth();
+    // console.log(id,user);    
 
     const submitJobApplication = e => {
         e.preventDefault();
         const form = e.target;
-        
-        // Extract values from the form
-        const name = form.elements.name.value;
-        const email = form.elements.email.value;
-        const phone = form.elements.phone.value;
-        const coverLetter = form.elements.coverLetter.value;
-        const resume = form.elements.resume.files[0]; 
 
-        console.log({ id, name, email, phone, coverLetter, resume });
+        const name = form.elements.name.value;
+        const phone = form.elements.phone.value;
+        const linkedIn = form.elements.linkedIn.value;
+        const github = form.elements.github.value;
+
+        const jobApplication = {
+            job_id: id,
+            name,
+            applicant_emai: user.email,
+            linkedIn,
+            phone,
+            github,
+        }
+
+        fetch('http://localhost:5000/job-applications', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(jobApplication)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+
     };
 
     return (
@@ -28,20 +48,20 @@ const JobApply = () => {
                     <input type="text" name="name" className="w-full p-2 border rounded bg-gray-700 text-white" required />
                 </div>
                 <div>
-                    <label className="block text-gray-300">Email</label>
-                    <input type="email" name="email" className="w-full p-2 border rounded bg-gray-700 text-white" required />
-                </div>
-                <div>
                     <label className="block text-gray-300">Phone Number</label>
                     <input type="tel" name="phone" className="w-full p-2 border rounded bg-gray-700 text-white" required />
                 </div>
                 <div>
-                    <label className="block text-gray-300">Resume</label>
-                    <input type="file" name="resume" className="w-full p-2 border rounded bg-gray-700 text-white" required />
+                    <label className="block text-gray-300">LinkedIn Profile</label>
+                    <input type="url" name="linkedIn" className="w-full p-2 border rounded bg-gray-700 text-white" placeholder="https://linkedin.com/in/yourprofile" required />
                 </div>
                 <div>
-                    <label className="block text-gray-300">Cover Letter</label>
-                    <textarea name="coverLetter" className="w-full p-2 border rounded bg-gray-700 text-white" rows="4" required></textarea>
+                    <label className="block text-gray-300">GitHub Profile</label>
+                    <input type="url" name="github" className="w-full p-2 border rounded bg-gray-700 text-white" placeholder="https://github.com/yourprofile" required />
+                </div>
+                <div>
+                    <label className="block text-gray-300">Resume</label>
+                    <input type="file" name="resume" className="w-full p-2 border rounded bg-gray-700 text-white" required />
                 </div>
                 <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
                     Submit Application
