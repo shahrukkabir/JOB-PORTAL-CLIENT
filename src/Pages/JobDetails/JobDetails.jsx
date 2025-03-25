@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { IoLocationOutline } from 'react-icons/io5';
 import { MdOutlineMail } from 'react-icons/md';
 
@@ -8,6 +8,7 @@ const JobDetails = () => {
     if (!job) return <p className="text-center text-gray-400">Loading...</p>;
 
     const {
+        _id,
         title,
         location,
         jobType,
@@ -90,9 +91,9 @@ const JobDetails = () => {
 
                 {/* Buttons */}
                 <div className="mt-6 flex gap-4">
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg flex-1">
-                        Apply Now
-                    </button>
+                    <Link to={`/jobApply/${_id}`}>
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg flex-1">Apply Now </button>
+                    </Link>
                     <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-lg flex-1">
                         Save Job
                     </button>

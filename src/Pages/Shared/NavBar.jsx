@@ -30,12 +30,11 @@ const NavBar = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <Link to="/">
-                    <a className="btn btn-ghost py-7 my-4 text-xl">
-                        <img src={logo} alt="" />
-                        <h3 className="3xl">JOB-PORTAL</h3>
-                    </a>
+                <Link to="/" className="btn btn-ghost py-7 my-4 flex items-center">
+                    <img className='w-12' src={logo} alt="Job Portal Logo" />
+                    <h3 className="text-2xl">JOB-PORTAL</h3>
                 </Link>
+
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
