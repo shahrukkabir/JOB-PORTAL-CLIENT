@@ -33,10 +33,10 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">
+                <NavLink to="/" className="btn btn-ghost text-xl">
                     <img className='w-12' src={logo} alt="" />
                     <h3 className="text-3xl">Job Portal</h3>
-                </a>
+                </NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
