@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import registerLottieData from '../../assets/lottie/register-lottie.json';
 import AuthContext from "../../Context/AuthContext/AuthContext";
@@ -7,14 +7,17 @@ import { FaGoogle } from "react-icons/fa6";
 
 export default function Register() {
 
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
+    const navigate = useNavigate();
+    const { createUser, signUpWithGoogle } = useContext(AuthContext);
+
+    const handleGoogleSignUp = () => {
+        signUpWithGoogle()
             .then((result) => {
-                console.log("Google Sign-In Successful:", result.user);
+                console.log("Google Sign-Up Successful:", result.user);
+                navigate("/", { replace: true });
             })
             .catch((error) => {
-                console.error("Google Sign-In Error:", error);
+                console.error("Google Sign-Up Error:", error);
             });
     };
 
@@ -35,6 +38,7 @@ export default function Register() {
         createUser(email, password)
             .then(res => {
                 console.log(res.user);
+                navigate("/", { replace: true });
             })
             .catch(error => {
                 console.log(error.message);
@@ -62,7 +66,7 @@ export default function Register() {
                     </div>
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Register</button>
                 </form>
-                <button onClick={handleGoogleSignIn} className="w-full mt-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition flex items-center justify-center gap-2">
+                <button onClick={handleGoogleSignUp} className="w-full mt-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition flex items-center justify-center gap-2">
                     <FaGoogle /> Sign up with Google
                 </button>
                 <p className="mt-4 text-center text-gray-300">

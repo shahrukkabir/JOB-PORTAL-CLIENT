@@ -1,8 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from './../../useAuth/useAuth';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
+
+    const navigate = useNavigate();
+
     const { id } = useParams();
     const { user } = useAuth();
     // console.log(id,user);    
@@ -19,7 +23,7 @@ const JobApply = () => {
         const jobApplication = {
             job_id: id,
             name,
-            applicant_emai: user.email,
+            applicant_email: user.email,
             linkedIn,
             phone,
             github,
@@ -34,7 +38,17 @@ const JobApply = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your application has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                navigate('/myApplications');
+
             })
 
     };

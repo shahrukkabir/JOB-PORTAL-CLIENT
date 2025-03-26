@@ -38,6 +38,7 @@ export default function SignIn() {
         signInUser(email, password)
             .then(res => {
                 console.log('Sign in ', res.user);
+                navigate(from);
             })
             .catch(e => {
                 console.log('Error', e);
