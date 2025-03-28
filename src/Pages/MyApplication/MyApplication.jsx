@@ -58,9 +58,9 @@ const MyApplications = () => {
                 <h2 className="text-4xl font-bold text-center mb-6">My Applications: {jobs.length}</h2>
 
                 <div className="overflow-x-auto">
-                    <table className="table w-full border border-gray-700 text-white">
+                    <table className="table w-full bg-gray-700 border border-gray-700 text-white">
                         {/* Table Head */}
-                        <thead className="bg-gray-600 text-gray-300">
+                        <thead className="bg-gray-800 text-gray-300">
                             <tr>
                                 <th className="px-4 py-3 text-center">
 
@@ -76,7 +76,7 @@ const MyApplications = () => {
                         <tbody>
                             {jobs.length > 0 ? (
                                 jobs.map((job) => (
-                                    <tr key={job._id} className="hover:bg-gray-800 transition duration-300">
+                                    <tr key={job._id} className="hover:bg-gray-600 transition duration-300">
                                         <td className="px-4 py-3 text-center">
                                             <label>
                                                 <input type="checkbox" className="checkbox" />
