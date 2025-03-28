@@ -54,13 +54,13 @@ const AddJob = () => {
                         <input type="text" name='location' placeholder="Job Location" className="input input-bordered w-full bg-gray-700 text-white" required />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <select name="jobType" className="select select-bordered w-full bg-gray-700 text-white" required>
+                        <select name="jobType" defaultValue={'Pick a Job Type'} className="select select-bordered w-full bg-gray-700 text-white" required>
                             <option disabled>Pick a Job Type</option>
                             <option>Full-time</option>
                             <option>Intern</option>
                             <option>Part-time</option>
                         </select>
-                        <select name="jobField" className="select select-bordered w-full bg-gray-700 text-white" required>
+                        <select name="jobField" defaultValue={'Pick a Job Field'} className="select select-bordered w-full bg-gray-700 text-white" required>
                             <option disabled>Pick a Job Field</option>
                             <option>Engineering</option>
                             <option>Marketing</option>
