@@ -29,7 +29,7 @@ const ViewApplication = () => {
     };
 
     return (
-        <div className="bg-gray-800 min-h-screen p-6 text-white">
+        <div className="bg-base-300 min-h-screen p-6 text-white">
             <h2 className="text-3xl font-bold mb-6">Applications for this job: {applications.length}</h2>
             <div className="overflow-x-auto bg-gray-700 shadow-lg rounded-lg p-6">
                 <table className="w-full table-auto border-collapse text-gray-300">

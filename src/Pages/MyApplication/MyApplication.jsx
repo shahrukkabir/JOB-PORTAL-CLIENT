@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../useAuth/useAuth';
 import Swal from 'sweetalert2';
+import { tr } from 'motion/react-client';
+import axios from 'axios';
+import useAxiosSecure from '../../useAuth/useAxiosSecure';
 
 const MyApplications = () => {
     const { user } = useAuth();
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/job-application?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setJobs(data))
-            .catch(error => console.error("Error fetching jobs:", error));
+
+        //using fetch 
+        // fetch(`http://localhost:5000/job-application?email=${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => setJobs(data))
+        //     .catch(error => console.error("Error fetching jobs:", error));
+
+        //using axios
+        // axios.get(`http://localhost:5000/job-application?email=${user.email}`, { withCredentials: true })
+        //     .then(res => setJobs(res.data)
+        //     )
+
+        //using custom hook useAxiosSecure
+        const axiosSecure = useAxiosSecure();
+
+        axiosSecure.get(`/job-application?email=${user.email}`)
+            .then(res => setJobs((res.data)))
+
     }, [user.email]);
 
     // Delete Job Application

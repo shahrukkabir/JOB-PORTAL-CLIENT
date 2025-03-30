@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import { FaGoogle } from "react-icons/fa6";
+import axios from "axios";
 
 export default function SignIn() {
 
@@ -13,7 +14,7 @@ export default function SignIn() {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state || '/';
-    
+
 
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -36,15 +37,15 @@ export default function SignIn() {
         const password = form.password.value;
 
         signInUser(email, password)
-            .then(res => {
-                console.log('Sign in ', res.user);
+            .then(result => {
+                console.log('sign in', result)
                 navigate(from);
             })
-            .catch(e => {
-                console.log('Error', e);
-            });
-        const formData = { email, password };
-        console.log("Form submitted:", formData);
+            .catch(error => {
+                console.log(error);
+            })
+        // const formData = { email, password };
+        // console.log("Form submitted:", formData);
     };
 
     return (
