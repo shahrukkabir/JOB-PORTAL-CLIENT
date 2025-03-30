@@ -1,12 +1,12 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../useAuth/useAuth';
+import useAuth from '../../Hook/useAuth';
 
 const AddJob = () => {
-   
+
     const navigate = useNavigate();
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     const handleAddJob = (e) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ const AddJob = () => {
         newJob.responsibilities = newJob.responsibilities.split('\n');
 
         console.log(newJob);
-        
+
 
         fetch('http://localhost:5000/jobs', {
             method: 'POST',
@@ -97,11 +97,11 @@ const AddJob = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="date" name='applicationDeadline' placeholder="Deadline" className="input input-bordered w-full bg-gray-700 text-white" required />
-                        <input type="url"  name='company_logo' placeholder="Company Logo URL" className="input input-bordered w-full bg-gray-700 text-white" required />
+                        <input type="url" name='company_logo' placeholder="Company Logo URL" className="input input-bordered w-full bg-gray-700 text-white" required />
                     </div>
 
                     {/* Submit Button */}
-                    <button type="submit" className= "w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                    <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
                         Submit Application
                     </button>
                 </form>

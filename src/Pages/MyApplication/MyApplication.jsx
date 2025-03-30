@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../../useAuth/useAuth';
+import useAuth from '../../Hook/useAuth';
 import Swal from 'sweetalert2';
 import { tr } from 'motion/react-client';
 import axios from 'axios';
-import useAxiosSecure from '../../useAuth/useAxiosSecure';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 const MyApplications = () => {
     const { user } = useAuth();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import useAuth from './../../useAuth/useAuth';
 import Swal from 'sweetalert2';
+import useAuth from '../../Hook/useAuth';
 
 const JobApply = () => {
 

@@ -17,7 +17,7 @@ const HotJobs = () => {
             <div className="text-center mb-16">
                 <h3 className="text-3xl font-bold text-gray-100">Jobs of the Day</h3>
                 <h3 className="text-xl text-gray-300 mt-2">{jobs.length} Jobs Available Now</h3>
-                <p className="text-gray-400 mt-1">Find the job that’s perfect for you. About 800+ new jobs every day.</p>
+                <p className="text-gray-400 mt-1">Find the job that’s perfect for you. About 20+ new jobs every day.</p>
             </div>
 
             {/* Jobs Grid */}
