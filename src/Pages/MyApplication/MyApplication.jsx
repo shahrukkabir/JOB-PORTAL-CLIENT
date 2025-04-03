@@ -12,13 +12,13 @@ const MyApplications = () => {
     useEffect(() => {
 
         //using fetch 
-        // fetch(`http://localhost:5000/job-application?email=${user.email}`)
+        // fetch(`https://job-portal-server-eight-tawny.vercel.app/job-application?email=${user.email}`)
         //     .then(res => res.json())
         //     .then(data => setJobs(data))
         //     .catch(error => console.error("Error fetching jobs:", error));
 
         //using axios
-        // axios.get(`http://localhost:5000/job-application?email=${user.email}`, { withCredentials: true })
+        // axios.get(`https://job-portal-server-eight-tawny.vercel.app/job-application?email=${user.email}`, { withCredentials: true })
         //     .then(res => setJobs(res.data)
         //     )
 
@@ -43,7 +43,7 @@ const MyApplications = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Delete from the database
-                fetch(`http://localhost:5000/job-application/${id}`, {
+                fetch(`https://job-portal-server-eight-tawny.vercel.app/job-application/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

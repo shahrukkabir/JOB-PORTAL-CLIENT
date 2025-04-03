@@ -7,25 +7,25 @@ const ViewApplication = () => {
 
     const handleStatusUpdate = (e, id) => {
         const updatedStatus = e.target.value;
-        fetch(`http://localhost:5000/job-applications/${id}`, {
+        fetch(`https://job-portal-server-eight-tawny.vercel.app/job-applications/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ status: updatedStatus })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.modifiedCount) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Status has been updated",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        });
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Status has been updated",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
     };
 
     return (
