@@ -5,7 +5,7 @@ const HotJobs = () => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch('https://job-portal-server-eight-tawny.vercel.app/jobs')
+        fetch('http://localhost:5000/jobs')
             .then(res => res.json())
             .then(data => setJobs(data))
             .catch(err => console.error("Failed to fetch jobs:", err)); // Handle errors

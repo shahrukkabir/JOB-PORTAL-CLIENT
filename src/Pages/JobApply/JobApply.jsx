@@ -29,7 +29,7 @@ const JobApply = () => {
             github,
         }
 
-        fetch('https://job-portal-server-eight-tawny.vercel.app/job-applications', {
+        fetch('http://localhost:5000/job-applications', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

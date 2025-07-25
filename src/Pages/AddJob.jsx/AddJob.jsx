@@ -20,7 +20,7 @@ const AddJob = () => {
         console.log(newJob);
 
 
-        fetch('https://job-portal-server-eight-tawny.vercel.app/jobs', {
+        fetch('http://localhost:5000/jobs', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
