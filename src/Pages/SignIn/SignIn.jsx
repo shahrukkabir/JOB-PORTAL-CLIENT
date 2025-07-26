@@ -23,7 +23,7 @@ export default function SignIn() {
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
-                console.log("Google Sign-In Successful:", result.user);
+                // console.log("Google Sign-In Successful:", result.user);
                 navigate(from);
             })
             .catch((error) => {
@@ -39,7 +39,7 @@ export default function SignIn() {
 
         signInUser(email, password)
             .then(result => {
-                console.log('sign in', result)
+                // console.log('sign in', result)
                 navigate(from);
             })
             .catch(error => {

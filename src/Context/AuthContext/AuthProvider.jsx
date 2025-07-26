@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
                 const user = { email: currentUser.email }
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
-                        console.log("Login", res.data);
+                        // console.log("Login", res.data);
                         setLoading(false);
                     })
             }
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
                 //client side logout request using axios
                 axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
                     .then(res => {
-                        console.log("Logout", res.data);
+                        // console.log("Logout", res.data);
                         setLoading(false);
                     })
             }

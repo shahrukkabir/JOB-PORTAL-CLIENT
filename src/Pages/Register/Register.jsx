@@ -13,7 +13,7 @@ export default function Register() {
     const handleGoogleSignUp = () => {
         signUpWithGoogle()
             .then((result) => {
-                console.log("Google Sign-Up Successful:", result.user);
+                // console.log("Google Sign-Up Successful:", result.user);
                 navigate("/", { replace: true });
             })
             .catch((error) => {
@@ -37,14 +37,14 @@ export default function Register() {
         }
         createUser(email, password)
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
                 navigate("/", { replace: true });
             })
             .catch(error => {
                 console.log(error.message);
             });
         const formData = { name, email, password };
-        console.log("Form submitted:", formData);
+        // console.log("Form submitted:", formData);
     };
 
     return (
