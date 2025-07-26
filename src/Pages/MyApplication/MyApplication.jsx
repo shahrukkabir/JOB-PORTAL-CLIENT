@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../../Hook/useAuth';
+import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { tr } from 'motion/react-client';
 import axios from 'axios';
-import useAxiosSecure from '../../hook/useAxiosSecure';
+import useAxiosSecure from './../../hooks/useAxiosSecure';
+
 
 const MyApplications = () => {
     const { user } = useAuth();
     const [jobs, setJobs] = useState([]);
+    
+    //using custom hook useAxiosSecure
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
 
@@ -22,8 +26,7 @@ const MyApplications = () => {
         //     .then(res => setJobs(res.data)
         //     )
 
-        //using custom hook useAxiosSecure
-        const axiosSecure = useAxiosSecure();
+        
 
         axiosSecure.get(`/job-application?email=${user.email}`)
             .then(res => setJobs((res.data)))

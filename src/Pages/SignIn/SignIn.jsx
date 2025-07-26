@@ -12,6 +12,7 @@ export default function SignIn() {
     const { signInUser } = useContext(AuthContext);
 
     const location = useLocation();
+    
     const navigate = useNavigate();
     const from = location.state || '/';
 

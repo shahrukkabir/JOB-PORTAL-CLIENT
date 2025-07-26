@@ -45,6 +45,7 @@ const AuthProvider = ({ children }) => {
                     })
             }
             else {
+                //client side logout request using axios
                 axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
                     .then(res => {
                         console.log("Logout", res.data);
