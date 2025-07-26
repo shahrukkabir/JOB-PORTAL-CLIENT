@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://job-portal-server-eight-tawny.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         // console.log("Login", res.data);
                         setLoading(false);
@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
             }
             else {
                 //client side logout request using axios
-                axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
+                axios.post('https://job-portal-server-eight-tawny.vercel.app/logout', {}, { withCredentials: true })
                     .then(res => {
                         // console.log("Logout", res.data);
                         setLoading(false);
